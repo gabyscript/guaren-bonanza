@@ -11,11 +11,13 @@
 
 #backcards {
     border: 1px solid #131313;
-    width: 10em;
-    height: 15em;
+    width: calc(12vw - 10px);
+    height: 38vh;
     display: flex;
-    justify-content: center;
-    align-items: end;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
     text-align: center;
     position: relative;
     cursor: pointer;

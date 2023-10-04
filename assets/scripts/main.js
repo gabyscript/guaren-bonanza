@@ -56,7 +56,7 @@ function generateCards() {
         safePrize++
     }
 
-    while (cards.length < 12) {
+    while (cards.length < 14) {
         const randomValue = cardsValues[Math.floor(Math.random() * cardsValues.length)];
         const randomCard = cardsConst.find(card => card.value == randomValue)
         cards.push(randomCard)
@@ -69,13 +69,10 @@ function showCards() {
     let gameCards = generateCards()
     gameCards = orderRandomly(gameCards)
 
-    console.log(gameCards)
-
-    for(let card of gameCards) {
+    for(let [index,card] of gameCards.entries()) {
 
         let reverseCard = document.createElement('div');
         reverseCard.setAttribute('id', 'backcards')
-        reverseCard.classList.add('col-2')
         reverseCard.classList.add('m-2')
         reverseCard.dataset.value = card.value;   
         reverseCard.dataset.text = card.modalTitleText;
@@ -83,14 +80,21 @@ function showCards() {
 
         let frontCard = document.createElement('div');
         frontCard.setAttribute('id', 'frontcards')
-        frontCard.classList.add('col')
         frontCard.style.backgroundImage = `url(${card.src})`
 
-        let betSalaDiv = document.createElement('div');
+        let cardNumberDiv = document.createElement('div')
+        let cardNumberText = document.createElement('h2')
+        cardNumberText.innerHTML = `${index+1}`
+        cardNumberText.style.color = "#FFFFFF"
+        cardNumberText.style.fontFamily = "Nunito"
+
+        let betSalaDiv = document.createElement('div')
         betSalaDiv.classList.add('bet-sala-logo') 
 
-        mainSection.appendChild(reverseCard);
+        mainSection.appendChild(reverseCard)
         reverseCard.appendChild(frontCard)
+        reverseCard.appendChild(cardNumberDiv)
+        cardNumberDiv.appendChild(cardNumberText)
         reverseCard.appendChild(betSalaDiv)
     }    
 }
