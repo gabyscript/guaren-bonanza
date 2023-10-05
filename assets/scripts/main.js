@@ -78,24 +78,38 @@ function showCards() {
         reverseCard.dataset.text = card.modalTitleText;
         reverseCard.dataset.description = card.modalDescriptionText;  
 
-        let frontCard = document.createElement('div');
-        frontCard.setAttribute('id', 'frontcards')
-        frontCard.style.backgroundImage = `url(${card.src})`
-
         let cardNumberDiv = document.createElement('div')
         let cardNumberText = document.createElement('h2')
         cardNumberText.innerHTML = `${index+1}`
         cardNumberText.style.color = "#FFFFFF"
-        cardNumberText.style.fontFamily = "Nunito"
 
         let betSalaDiv = document.createElement('div')
         betSalaDiv.classList.add('bet-sala-logo') 
+
+        let frontCard = document.createElement('div');
+        frontCard.setAttribute('id', 'frontcards')
+        //frontCard.style.backgroundImage = `url(${card.src})`
+        frontCard.style.backgroundColor = `${card.backgroundColor}`
+
+        if (card.value == "NoPrice") 
+        {
+            frontCard.style.filter = "grayscale(1)"
+        }
+
+        let priceDiv = document.createElement('div')
+        let priceText = document.createElement('h2')
+        priceText.innerHTML = `${card.nombre}`
+        priceText.style.color = `#030303`
+
+        
 
         mainSection.appendChild(reverseCard)
         reverseCard.appendChild(frontCard)
         reverseCard.appendChild(cardNumberDiv)
         cardNumberDiv.appendChild(cardNumberText)
         reverseCard.appendChild(betSalaDiv)
+        frontCard.appendChild(priceDiv)
+        priceDiv.appendChild(priceText)
     }    
 }
 
